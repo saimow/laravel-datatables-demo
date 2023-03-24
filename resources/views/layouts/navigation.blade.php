@@ -16,6 +16,15 @@
             {{ __('Users') }}
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.posts.index') }}">
+            <svg class="nav-icon">
+                <use xlink:href="{{ asset('icons/coreui.svg#cil-short-text') }}"></use>
+            </svg>
+            {{ __('Posts') }}
+        </a>
+    </li>
     
     <li class="nav-item nav-group">
         <a class="nav-link nav-group-toggle" href="">
