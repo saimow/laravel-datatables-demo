@@ -26,34 +26,9 @@
             <i class="bi bi-plus-lg"></i> Create Post
         </a>
     </div>
-    <table class="table mb-3 border border-1 bg-white">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Content</th>
-            <th scope="col">Created At</th>
-            <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($posts as $post)
-                <tr>
-                    <th scope="row">{{$post->id}}</th>
-                    <td>{{substr($post->title, 0, 20) . '...'}}</td>
-                    <td>{{substr($post->content, 0, 50) . '...'}}</td>
-                    <td>{{$post->created_at->format('d-m-Y')}}</td>
-                    <td>
-                        <a class="btn btn-success btn-sm text-white me-1" href="{{route('admin.posts.edit', $post->id)}}"><i class='bi bi-pencil-fill'></i></a>
-                        <button class="btn btn-danger btn-sm text-white delete-confirmation" data-id="{{ $post->id }}" type="button" data-bs-toggle="modal" data-bs-target="#delete-confirmation"><i class='bi bi-trash3-fill'></i></button>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table> 
-    <div class="d-flex">
-        <div class="ms-auto">
-            {!! $posts->links() !!}
+    <div class="card">
+        <div class="card-body">
+            {{ $dataTable->table() }}
         </div>
     </div>
 </div>
@@ -85,6 +60,8 @@
 @endsection
 
 @push('scripts')
+
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
 <script>
 
