@@ -18,7 +18,6 @@
 @endsection
 
 @section('content')
-
 <div class="">
     <div class="mb-2 d-flex justify-content-between">
         <h2 class="m-0 align-self-end">Posts</h2>
@@ -45,13 +44,9 @@
                 Are you sure you want to delete this record?
             </div>
             <div class="modal-footer">
-                <form action="{{route('admin.posts.destroy')}}" class="d-inline" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <input name="id" id="record-id" type="text" >
-                    <button type="submit" class="btn btn-danger delete-record">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </form>
+                <input name="id" id="record-id" type="text" hidden>
+                <button type="submit" class="btn btn-danger delete-record" data-bs-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
@@ -70,6 +65,20 @@
         $('#record-id').val(id);
     });
 
+    $(document).on('click', '.delete-record', function() {
+        let id = $('#record-id').val();
+        $.ajax({
+            url: '/api/admin/posts/delete/' + id,
+            type: 'DELETE',
+            success: function (data) {
+                if (data.success) {
+                    $('#datatable').DataTable().draw(false); // no pagination reset
+                }
+            }
+        });     
+    }); 
+
 </script>
+
 
 @endpush

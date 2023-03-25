@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/posts/edit/{post}', [PostController\Update::class, 'index'])->name('posts.edit');
         Route::put('/posts/update/{post}', [PostController\Update::class, 'update'])->name('posts.update');
 
-        Route::delete('/posts/delete', [PostController\Delete::class, 'destroy'])->name('posts.destroy');
+        // Route::delete('/posts/delete', [PostController\Delete::class, 'destroy'])->name('posts.destroy');
         // ----
     });
 });

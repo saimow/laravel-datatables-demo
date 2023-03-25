@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class Delete extends Controller
 {
-    public function destroy(Request $request){
-        Post::where('id', $request->id)->delete();
+    public function destroy(Post $post){
+        $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
