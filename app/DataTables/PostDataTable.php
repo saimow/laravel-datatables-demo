@@ -61,13 +61,48 @@ class PostDataTable extends DataTable
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(0)
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
+                    ->parameters([
+                        'buttons' => [
+                            'buttons' => [
+                                [
+                                    'extend' => 'excel',
+                                    'text' => 'EXCEL'
+                                ], 
+                                [
+                                    'extend' => 'csv',
+                                    'text' => 'CSV'
+                                ],
+                                'print',
+                                'reset',
+                                'reload',
+                            ],
+                            'dom' => [
+                                'button' => [
+                                    'className' => 'btn btn-dark',
+                                ]
+                            ]
+                        ]
                     ]);
+                    // ->buttons([
+                    //     [
+                    //         'extend' => 'excel',
+                    //         'text' => 'EXCEL'
+                    //     ], 
+                    //     [
+                    //         'extend' => 'csv',
+                    //         'text' => 'CSV'
+                    //     ],
+                    //     'print',
+                    //     'reset',
+                    //     'reload',
+                    // ]);
+                    // ->buttons([
+                    //     Button::make('excel')->text('EXCEL')->className('btn btn-primary'),
+                    //     Button::make('csv'),
+                    //     Button::make('print'),
+                    //     Button::make('reset'),
+                    //     Button::make('reload')
+                    // ]);
     }
 
     /**
